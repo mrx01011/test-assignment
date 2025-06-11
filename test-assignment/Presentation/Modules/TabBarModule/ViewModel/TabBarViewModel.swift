@@ -14,7 +14,7 @@ final class TabBarViewModel {
     @ObservationIgnored
     @Dependency(\.networkMonitor)
     private var networkMonitor: any NetworkMonitor
-
+    
     //MARK: Properties
     @ObservationIgnored
     private var cancellables = Set<AnyCancellable>()
@@ -26,7 +26,7 @@ final class TabBarViewModel {
     init() {
         observeNetwork()
     }
-
+    
     //MARK: Private methods
     private func observeNetwork() {
         guard let monitor = networkMonitor as? NetworkMonitorImpl else { return }

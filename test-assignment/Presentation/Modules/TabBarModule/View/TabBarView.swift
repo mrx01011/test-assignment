@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct TabBarView: View {
+    // MARK: ViewModel
+    @State private var viewModel = TabBarViewModel()
+    
     // MARK: Properties
-    @Bindable private var viewModel = TabBarViewModel()
+    @State private var tabBarSize: CGSize?
     
     // MARK: Body
     var body: some View {
@@ -32,7 +35,8 @@ extension TabBarView {
     func FakeTabBar() -> some View {
         TabView(selection: $viewModel.selectedTab) {
             Tab.init(value: .users) {
-                Text("Users")
+                UsersView()
+                    .safeAreaPadding(.bottom, tabBarSize?.height)
                     .toolbarVisibility(.hidden, for: .tabBar)
             }
             
@@ -64,15 +68,18 @@ extension TabBarView {
                     }
                 }
             }
+            .padding(.vertical, 16)
+            .background(Color.tabBarBackground)
+            .onAppear {
+                tabBarSize = size
+            }
         }
-        .padding(.vertical, 16)
         .frame(maxWidth: .infinity, maxHeight: 40)
-        .background(Color.tabBarBackground)
     }
     
     @ViewBuilder
     func NoConnectionView() -> some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 24) {
             Image(.noConnectionImg)
 
             Text("There is no internet connection")
