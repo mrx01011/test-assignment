@@ -180,6 +180,12 @@ Utility views and extensions:
 
 ---
 
+## External Libraries
+
+- **SDWebImageSwiftUI**: Used for async image loading and caching in SwiftUI views. Provides `WebImage` view for efficient image display.
+  - Add via Swift Package Manager: `https://github.com/SDWebImage/SDWebImageSwiftUI`
+
+
 ## Build Instructions
 
 1. Clone repo: `git clone <repo-url>`
