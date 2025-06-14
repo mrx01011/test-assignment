@@ -13,6 +13,7 @@ struct MainApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .ignoresSafeArea(.keyboard)
         }
     }
 }

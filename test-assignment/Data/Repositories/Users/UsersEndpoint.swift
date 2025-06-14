@@ -7,13 +7,24 @@
 
 enum UsersEndpoint: Endpoint {
     case getUsers(page: Int, count: Int)
-//    case getUserById(Int)
-//    case postUser
+    case getPositions
+    case postUser
     
     var path: String {
         switch self {
-        case .getUsers:
+        case .getUsers, .postUser:
             return "/users"
+        case .getPositions:
+            return "/positions"
+        }
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+            case .getUsers, .getPositions:
+            return .get
+        case .postUser:
+            return .post
         }
     }
     
@@ -24,6 +35,8 @@ enum UsersEndpoint: Endpoint {
                 "page": page,
                 "count": count
             ]
+        case .getPositions, .postUser:
+            return nil
         }
     }
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 enum ViewState {
-    case skeletonable
     case result
     case noConnection
     case emptyList

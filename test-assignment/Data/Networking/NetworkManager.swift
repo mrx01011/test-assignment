@@ -9,6 +9,11 @@ import Foundation
 
 protocol NetworkManager {
     func fetch<T: Decodable>(from endpoint: Endpoint) async throws -> T
+    func uploadMultipart<T: Decodable>(
+           to endpoint: Endpoint,
+           token: String,
+           prepareBody: (inout MultipartFormData) -> Void
+       ) async throws -> T
 }
 
 final class NetworkManagerImpl: NetworkManager {
@@ -39,6 +44,30 @@ final class NetworkManagerImpl: NetworkManager {
             throw NetworkError.decodingFailed
         }
     }
+    
+    func uploadMultipart<T: Decodable>(
+           to endpoint: Endpoint,
+           token: String,
+           prepareBody: (inout MultipartFormData) -> Void
+       ) async throws -> T {
+           var request = try endpoint.urlRequest()
+           request.httpMethod = "POST"
+           let boundary = "Boundary-\(UUID().uuidString)"
+           request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+           request.setValue(token, forHTTPHeaderField: "Token")
+
+           var form = MultipartFormData(boundary: boundary)
+           prepareBody(&form)
+           request.httpBody = form.finalize()
+
+           let (data, response) = try await session.data(for: request)
+           guard let httpResponse = response as? HTTPURLResponse else {
+               throw NetworkError.invalidResponse
+           }
+           try validateResponse(httpResponse)
+
+           return try JSONDecoder().decode(T.self, from: data)
+       }
     
     private func validateResponse(_ response: HTTPURLResponse) throws {
         switch response.statusCode {

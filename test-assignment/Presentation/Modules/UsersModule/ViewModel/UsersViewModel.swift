@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class UsersViewModel {
+final class UsersViewModel {
     // MARK: Dependency
     @ObservationIgnored
     @Dependency(\.usersRepository)
@@ -22,7 +22,7 @@ class UsersViewModel {
     var totalPages: Int = 1
     var isLoading: Bool = false
     
-    private let pageSize = 10
+    private let pageSize = 6
     
     // MARK: Initialization
     init() {

@@ -17,7 +17,7 @@ protocol NetworkMonitor: ObservableObject {
 /// This class observes changes in network connectivity status using
 /// Apple's Network framework and publishes updates to the `isConnected` property
 /// It runs on a background queue and delivers updates on the main thread.
-class NetworkMonitorImpl: NetworkMonitor {
+final class NetworkMonitorImpl: NetworkMonitor {
     private let monitor: NWPathMonitor = .init()
     private let queue = DispatchQueue(label: "NetworkMonitor_queue_working")
     

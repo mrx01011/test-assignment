@@ -17,7 +17,7 @@ struct TabBarView: View {
     // MARK: Body
     var body: some View {
         switch viewModel.viewState {
-        case .skeletonable, .result, .emptyList:
+        case .result, .emptyList:
             ZStack(alignment: .bottom) {
                 FakeTabBar() // Fake native tab bar
                 
@@ -41,7 +41,8 @@ extension TabBarView {
             }
             
             Tab.init(value: .signUp) {
-                Text("Sign Up")
+                SignUpView()
+                    .safeAreaPadding(.bottom, tabBarSize?.height)
                     .toolbarVisibility(.hidden, for: .tabBar)
             }
         }

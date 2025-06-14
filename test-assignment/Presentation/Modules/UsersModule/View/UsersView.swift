@@ -18,7 +18,7 @@ struct UsersView: View {
         VStack(spacing: 0) {
             TopBarView(title: "Working with GET request")
             switch viewModel.viewState {
-            case .skeletonable, .result, .noConnection:
+            case .result, .noConnection:
                 UsersList()
             case .emptyList:
                 EmptyList()
