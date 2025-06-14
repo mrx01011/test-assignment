@@ -14,9 +14,22 @@
 		FAFB329A2DF8CA5100DC13B8 /* test-assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		FAFB32B52DF8CE7300DC13B8 /* Exceptions for "test-assignment" folder in "test-assignment" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = FAFB32992DF8CA5100DC13B8 /* test-assignment */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FAFB329C2DF8CA5100DC13B8 /* test-assignment */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FAFB32B52DF8CE7300DC13B8 /* Exceptions for "test-assignment" folder in "test-assignment" target */,
+			);
 			path = "test-assignment";
 			sourceTree = "<group>";
 		};
